@@ -11,7 +11,7 @@ const Header = () => {
               <div className="top_bar_contact_item">
                 <div className="top_bar_icon">
                   <img
-                    src="images/xphone.png.pagespeed.ic.f_yfuJIpsP.png"
+                    src={require("../../images/xphone.png.pagespeed.ic.f_yfuJIpsP.png")}
                     alt=""
                   />
                 </div>
@@ -20,11 +20,11 @@ const Header = () => {
               <div className="top_bar_contact_item">
                 <div className="top_bar_icon">
                   <img
-                    src="images/xmail.png.pagespeed.ic.Av1SZBKjB0.png"
+                    src={require("../../images/xmail.png.pagespeed.ic.Av1SZBKjB0.png")}
                     alt=""
                   />
                 </div>
-                <a href="mailto:support@asservices.in">support@asservices.in</a>
+                <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
               </div>
               <div className="top_bar_content ml-auto">
                 <div className="top_bar_menu">
@@ -67,13 +67,13 @@ const Header = () => {
                 </div>
                 <div className="top_bar_user">
                   <div className="user_icon">
-                    <img src="images/user.svg" alt="" />
+                    <img src={require("../../images/user.svg").default} alt="" />
                   </div>
                   <div>
-                    <a href=" ">Register</a>
+                    <Link to={"/register"}>Register</Link>
                   </div>
                   <div>
-                    <a href=" ">Sign in</a>
+                    <Link to={"/login"}>Login</Link>
                   </div>
                 </div>
               </div>
@@ -107,7 +107,7 @@ const Header = () => {
                         className="header_search_button trans_300"
                         value="Submit"
                       >
-                        <img src="images/search.png" alt="" />
+                        <img src={require("../../images/search.png")} alt="" />
                       </button>
                     </form>
                   </div>
@@ -118,7 +118,7 @@ const Header = () => {
               <div className="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                 <div className="wishlist d-flex flex-row align-items-center justify-content-end">
                   <div className="wishlist_icon">
-                    <img src="images/heart.png" alt="" />
+                    <img src={require("../../images/heart.png")} alt="" />
                   </div>
                   <div className="wishlist_content">
                     <div className="wishlist_text">
@@ -130,7 +130,7 @@ const Header = () => {
                 <div className="cart">
                   <div className="cart_container d-flex flex-row align-items-center justify-content-end">
                     <div className="cart_icon">
-                      <img src="images/cart.png" alt="" />
+                      <img src={require("../../images/cart.png")} alt="" />
                       <div className="cart_count">
                         <span>10</span>
                       </div>
@@ -274,22 +274,16 @@ const Header = () => {
                 <div className="main_nav_menu ml-auto">
                   <ul className="standard_dropdown main_nav_dropdown">
                     <li>
-                      <Link to={"/home"}>
-                        Home
-                        <i className="fas fa-chevron-down" />
-                      </Link>
+                      <Link to={"/home"}>Home</Link>
                     </li>
                     <li>
-                      <Link to={"/about"}>
-                        About
-                        <i className="fas fa-chevron-down" />
-                      </Link>
+                      <Link to={"/contests"}>Contests</Link>
                     </li>
                     <li>
-                      <Link to={"/contact"}>
-                        Contact
-                        <i className="fas fa-chevron-down" />
-                      </Link>
+                      <Link to={"/about"}>About</Link>
+                    </li>
+                    <li>
+                      <Link to={"/contact"}>Contact</Link>
                     </li>
                   </ul>
                 </div>

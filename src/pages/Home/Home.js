@@ -1,15 +1,15 @@
-import React from 'react'
-import Footer from '../../components/Footer/Footer'
+import React, { Fragment } from 'react'
 import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 import Contests from '../Contests/Contests'
 
 const Home = () => {
   return (
-    <div>
-        {/* <Header /> */}
+    <Fragment>
+        <Header />
         <Contests />
-        {/* <Footer /> */}
-    </div>
+        <Footer />
+    </Fragment>
   )
 }
 

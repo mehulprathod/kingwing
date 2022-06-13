@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
+import "./Contact.css";
 
 const Contact = () => {
   return (
@@ -13,7 +14,7 @@ const Contact = () => {
               <div className="contact_info_container d-flex flex-lg-row flex-column justify-content-between align-items-between">
                 <div className="contact_info_item d-flex flex-row align-items-center justify-content-start">
                   <div className="contact_info_image">
-                    <img src="images/contact_1.png" alt="" />
+                    <img src={require("../images/contact_1.png")} alt="" />
                   </div>
                   <div className="contact_info_content">
                     <div className="contact_info_title">Phone</div>
@@ -22,24 +23,16 @@ const Contact = () => {
                 </div>
                 <div className="contact_info_item d-flex flex-row align-items-center justify-content-start">
                   <div className="contact_info_image">
-                    <img src="images/contact_2.png" alt="" />
+                    <img src={require("../images/contact_2.png")} alt="" />
                   </div>
                   <div className="contact_info_content">
                     <div className="contact_info_title">Email</div>
-                    <div className="contact_info_text">
-                      <a
-                        href="https://preview.colorlib.com/cdn-cgi/l/email-protection"
-                        className="__cf_email__"
-                        data-cfemail="690f081a1d1a08050c1a290e04080005470a0604"
-                      >
-                        [email&nbsp;protected]
-                      </a>
-                    </div>
+                    <div className="contact_info_text">fastsales@gmail.com</div>
                   </div>
                 </div>
                 <div className="contact_info_item d-flex flex-row align-items-center justify-content-start">
                   <div className="contact_info_image">
-                    <img src="images/contact_3.png" alt="" />
+                    <img src={require("../images/contact_3.png")} alt="" />
                   </div>
                   <div className="contact_info_content">
                     <div className="contact_info_title">Address</div>
@@ -109,14 +102,6 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="panel" />
-      </div>
-      <div className="contact_map">
-        <div id="google_map" className="google_map">
-          <div className="map_container">
-            <div id="map" />
-          </div>
-        </div>
       </div>
       <div className="newsletter">
         <div className="container">
@@ -143,7 +128,7 @@ const Contact = () => {
                     <button className="newsletter_button">Subscribe</button>
                   </form>
                   <div className="newsletter_unsubscribe_link">
-                    <a href="#">unsubscribe</a>
+                    <a href=" ">unsubscribe</a>
                   </div>
                 </div>
               </div>
