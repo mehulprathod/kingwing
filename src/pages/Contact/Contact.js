@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import Footer from "../components/Footer/Footer";
-import Header from "../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
 import "./Contact.css";
 
 const Contact = () => {
@@ -14,7 +14,7 @@ const Contact = () => {
               <div className="contact_info_container d-flex flex-lg-row flex-column justify-content-between align-items-between">
                 <div className="contact_info_item d-flex flex-row align-items-center justify-content-start">
                   <div className="contact_info_image">
-                    <img src={require("../images/contact_1.png")} alt="" />
+                    <img src={require("../../images/contact_1.png")} alt="" />
                   </div>
                   <div className="contact_info_content">
                     <div className="contact_info_title">Phone</div>
@@ -23,7 +23,7 @@ const Contact = () => {
                 </div>
                 <div className="contact_info_item d-flex flex-row align-items-center justify-content-start">
                   <div className="contact_info_image">
-                    <img src={require("../images/contact_2.png")} alt="" />
+                    <img src={require("../../images/contact_2.png")} alt="" />
                   </div>
                   <div className="contact_info_content">
                     <div className="contact_info_title">Email</div>
@@ -32,7 +32,7 @@ const Contact = () => {
                 </div>
                 <div className="contact_info_item d-flex flex-row align-items-center justify-content-start">
                   <div className="contact_info_image">
-                    <img src={require("../images/contact_3.png")} alt="" />
+                    <img src={require("../../images/contact_3.png")} alt="" />
                   </div>
                   <div className="contact_info_content">
                     <div className="contact_info_title">Address</div>
@@ -110,7 +110,7 @@ const Contact = () => {
               <div className="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
                 <div className="newsletter_title_container">
                   <div className="newsletter_icon">
-                    <img src="images/send.png" alt="" />
+                    <img src={require("../../images/send.png")} alt="" />
                   </div>
                   <div className="newsletter_title">Sign up for Newsletter</div>
                   <div className="newsletter_text">

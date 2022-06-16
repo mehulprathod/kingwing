@@ -2,14 +2,36 @@ import React, { Fragment } from "react";
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import HttpPostRequest from "../../../http/HttpPostRequest";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    var formData = new FormData(event.target);
+    event.preventDefault();
+
+    var data = {};
+    formData.forEach(function (value, key) {
+      data[key] = value;
+    });
+    try {
+      const loginResponse = await HttpPostRequest("/user/login", data);
+      localStorage.setItem("AUTH_TOKEN", loginResponse.token);
+      localStorage.setItem("AUTH_EMAIL", loginResponse.email);
+
+      navigate("/home");
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <Fragment>
       <Header />
-      <section className="w-100">
-        <div className="container-fluid">
+      <section className="container logi">
+        <div className="container-fluid border rounded-3">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-md-6">
               <img
@@ -19,7 +41,7 @@ const Login = () => {
               />
             </div>
             <div className="col-md-6 my-3">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                   <p className="lead fw-normal mb-0 me-3">Sign in with</p>
                   <button
@@ -53,6 +75,7 @@ const Login = () => {
                 </label>
                 <input
                   type="email"
+                  name="login"
                   id="defaultFormRegisterEmailEx"
                   className="form-control"
                   placeholder="Enter email address"
@@ -67,6 +90,8 @@ const Login = () => {
                 </label>
                 <input
                   type="password"
+                  name="password"
+                  autoComplete="off"
                   id="current-password"
                   className="form-control"
                   placeholder="Enter password"
@@ -80,7 +105,11 @@ const Login = () => {
                       defaultValue=""
                       id="form2Example3"
                     />
-                    <label className="form-check-label" htmlFor="form2Example3">
+                    <label
+                      className="form-check-label"
+                      htmlFor="form2Example3"
+                      style={{ marginLeft: "5px", lineHeight: "2" }}
+                    >
                       Remember me
                     </label>
                   </div>

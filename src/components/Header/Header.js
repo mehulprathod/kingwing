@@ -67,7 +67,10 @@ const Header = () => {
                 </div>
                 <div className="top_bar_user">
                   <div className="user_icon">
-                    <img src={require("../../images/user.svg").default} alt="" />
+                    <img
+                      src={require("../../images/user.svg").default}
+                      alt=""
+                    />
                   </div>
                   <div>
                     <Link to={"/register"}>Register</Link>
@@ -87,7 +90,14 @@ const Header = () => {
             <div className="col-lg-2 col-sm-3 col-3 order-1">
               <div className="logo_container">
                 <div className="logo">
-                  <Link to={"/"}>KingWing</Link>
+                  <Link to={"/"}>
+                    <img
+                      src={require("../../images/logo.png")}
+                      height={100}
+                      width={100}
+                      alt=""
+                    />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -164,110 +174,19 @@ const Header = () => {
                   </div>
                   <ul className="cat_menu">
                     <li>
-                      <a href=" ">
-                        Computers &amp; Laptops{" "}
-                        <i className="fas fa-chevron-right ml-auto" />
-                      </a>
+                      <a href=" ">Mega Contest</a>
                     </li>
                     <li>
-                      <a href=" ">
-                        Cameras &amp; Photos
-                        <i className="fas fa-chevron-right" />
-                      </a>
-                    </li>
-                    <li className="hassubs">
-                      <a href=" ">
-                        Hardware
-                        <i className="fas fa-chevron-right" />
-                      </a>
-                      <ul>
-                        <li className="hassubs">
-                          <a href=" ">
-                            Menu Item
-                            <i className="fas fa-chevron-right" />
-                          </a>
-                          <ul>
-                            <li>
-                              <a href=" ">
-                                Menu Item
-                                <i className="fas fa-chevron-right" />
-                              </a>
-                            </li>
-                            <li>
-                              <a href=" ">
-                                Menu Item
-                                <i className="fas fa-chevron-right" />
-                              </a>
-                            </li>
-                            <li>
-                              <a href=" ">
-                                Menu Item
-                                <i className="fas fa-chevron-right" />
-                              </a>
-                            </li>
-                            <li>
-                              <a href=" ">
-                                Menu Item
-                                <i className="fas fa-chevron-right" />
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <a href=" ">
-                            Menu Item
-                            <i className="fas fa-chevron-right" />
-                          </a>
-                        </li>
-                        <li>
-                          <a href=" ">
-                            Menu Item
-                            <i className="fas fa-chevron-right" />
-                          </a>
-                        </li>
-                        <li>
-                          <a href=" ">
-                            Menu Item
-                            <i className="fas fa-chevron-right" />
-                          </a>
-                        </li>
-                      </ul>
+                      <a href=" ">Big Bumper Contest</a>
                     </li>
                     <li>
-                      <a href=" ">
-                        Smartphones &amp; Tablets
-                        <i className="fas fa-chevron-right" />
-                      </a>
+                      <a href=" ">Laptops &amp; Computers </a>
                     </li>
                     <li>
-                      <a href=" ">
-                        TV &amp; Audio
-                        <i className="fas fa-chevron-right" />
-                      </a>
+                      <a href=" ">Cameras &amp; TV</a>
                     </li>
                     <li>
-                      <a href=" ">
-                        Gadgets
-                        <i className="fas fa-chevron-right" />
-                      </a>
-                    </li>
-                    <li>
-                      <a href=" ">
-                        Car Electronics
-                        <i className="fas fa-chevron-right" />
-                      </a>
-                    </li>
-                    <li>
-                      <a href=" ">
-                        Video Games &amp; Consoles
-                        <i className="fas fa-chevron-right" />
-                      </a>
-                    </li>
-                    <li>
-                      <a href=" ">
-                        Accessories
-                        <i className="fas fa-chevron-right" />
-                      </a>
+                      <a href=" ">Smartphones &amp; Tablets</a>
                     </li>
                   </ul>
                 </div>

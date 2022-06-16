@@ -18,3 +18,16 @@
     width: 37px;
     border-radius: 50%;
 }
+.check-label {
+  margin-left: 5px;
+  line-height: 2;
+}
+
+input[type="checkbox"] {
+  padding: 8px;
+}
+
+.logi {
+  height: 490px;
+  margin-top: 10px;
+}
