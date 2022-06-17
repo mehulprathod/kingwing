@@ -2,9 +2,30 @@ import React, { Fragment } from "react";
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import HttpPostRequest from "../../../http/HttpPostRequest";
+import { toast } from "react-toastify";
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    var formData = new FormData(event.target);
+    event.preventDefault();
+
+    var data = {};
+    formData.forEach(function (value, key) {
+      data[key] = value;
+    });
+    try {
+      await HttpPostRequest("/users/create", data);
+      toast.success("Welcome to KingWing");
+      navigate("/login");
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+
   return (
     <Fragment>
       <Header />
@@ -19,7 +40,7 @@ const Register = () => {
               />
             </div>
             <div className="col-md-6">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <p className="h4 text-center my-3">Registration Form</p>
                 <label
                   htmlFor="defaultFormRegisterNameEx"
@@ -29,9 +50,22 @@ const Register = () => {
                 </label>
                 <input
                   type="text"
+                  name="name"
                   id="defaultFormRegisterNameEx"
                   className="form-control"
                   placeholder="Enter your Name"
+                />
+                <br />
+                <label htmlFor="phone" className="grey-text">
+                  Enter mobile number:
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="1234567890"
+                  className="form-control"
+                  pattern="[0-9]{3}[0-9]{2}[0-9]{3}[0-9]{2}"
                 />
                 <br />
                 <label
@@ -42,6 +76,7 @@ const Register = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   id="defaultFormRegisterEmailEx"
                   className="form-control"
                   placeholder="Enter your email"
@@ -55,9 +90,11 @@ const Register = () => {
                 </label>
                 <input
                   type="password"
-                  id="current-password"
+                  name="password"
+                  id="defaultFormRegisterPasswordEx"
                   className="form-control"
                   placeholder="Enter your password"
+                  autoComplete="off"
                 />
                 <br />
                 <label
@@ -68,10 +105,22 @@ const Register = () => {
                 </label>
                 <input
                   type="password"
+                  autoComplete="off"
                   id="defaultFormRegisterConfirmEx"
                   className="form-control"
                   placeholder="Enter your confirm password"
                 />
+                <br />
+                <label htmlFor="photo" className="grey-text">
+                  Photo
+                </label>
+                <input
+                  type="file"
+                  name="image"
+                  id="photo"
+                  className="form-control"
+                />
+
                 <div className="text-center my-4">
                   <button className="btn btn-primary py-2 px-4" type="submit">
                     Register

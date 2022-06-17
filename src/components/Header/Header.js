@@ -1,7 +1,15 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [email, setEmail] = useState(localStorage.getItem("AUTH_EMAIL"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("AUTH_EMAIL");
+    localStorage.removeItem("AUTH_TOKEN");
+    setEmail("");
+  };
+
   return (
     <header className="header">
       <div className="top_bar">
@@ -66,18 +74,29 @@ const Header = () => {
                   </ul>
                 </div>
                 <div className="top_bar_user">
-                  <div className="user_icon">
-                    <img
-                      src={require("../../images/user.svg").default}
-                      alt=""
-                    />
-                  </div>
-                  <div>
-                    <Link to={"/register"}>Register</Link>
-                  </div>
-                  <div>
-                    <Link to={"/login"}>Login</Link>
-                  </div>
+                  {(!email || email === "") && (
+                    <Fragment>
+                      <div className="user_icon">
+                        <img
+                          src={require("../../images/user.svg").default}
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <Link to="/register">Register</Link>
+                      </div>
+                    </Fragment>
+                  )}
+                  {(!email || email === "") && (
+                    <div>
+                      <Link to="/login">Login</Link>
+                    </div>
+                  )}
+                  {email && email !== "" && (
+                    <button className="btn btn-primary" onClick={handleLogout}>
+                      Logout
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -204,6 +223,22 @@ const Header = () => {
                     <li>
                       <Link to={"/contact"}>Contact</Link>
                     </li>
+                    {email && email !== "" && (
+                      <li>
+                        <Link to={"/about"}>{email}</Link>
+                        <ul className="cat_menu">
+                          <li>
+                            <Link to={"/about"}>Wallet</Link>
+                          </li>
+                          <li>
+                            <Link to={"/about"}>Your Contests</Link>
+                          </li>
+                          <li>
+                            <Link to={"/about"}>Settings</Link>
+                          </li>
+                        </ul>
+                      </li>
+                    )}
                   </ul>
                 </div>
                 <div className="menu_trigger_container ml-auto">

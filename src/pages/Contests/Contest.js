@@ -1,24 +1,64 @@
-import React from "react";
+import React, { useState, useEffect, Fragment, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
+import HttpPostRequest from "../../http/HttpPostRequest";
+import "./Contest.css";
 
 const Contest = () => {
+  const { id } = useParams();
+  const [detail, setDetail] = useState(false);
+  const closeButton = useRef(null);
+  const navigate = useNavigate();
+
+  const handleJoinContest = async () => {
+    try {
+      const data = {
+        contest: id,
+        number: Math.random() * 100000,
+      };
+
+      const joinResponse = await HttpPostRequest("/user/contest/joining/", data);
+      toast.success(joinResponse);
+      closeButton.current.click();
+      navigate("/home");
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+
+  const loadContest = async () => {
+    try {
+      const data = await HttpPostRequest("/contest/detail", { contest: id });
+      setDetail(data);
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+
+  useEffect(() => {
+    loadContest();
+  }, [id]);
+
   return (
-    <div className="container">
-      <div className="card">
-        <div className="container-fluid">
-          <div className="wrapper row">
-            <div className="previw col-md-6">
-              <div className="preview-pic tab-content">
-                <div className="tab-pane active" id="pic-1"></div>
-                <img src="" alt="" />
-                <ul className="preview-thumbnail nav nav-tabs">
-                  <li className="active"></li>
-                </ul>
-              </div>
+    <Fragment>
+      <Header />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <div className="image_selected">
+              <img src={detail.product?.image} alt="" />
             </div>
-            <div className="details col-md-6">
-              <h3 className="product-title"></h3>
-              <p className="product-description"></p>
-              <h4 className="price">Contest price: </h4>
+          </div>
+          <div className="col-md-6">
+            <div className="product_description">
+              <div className="product_category">
+                {detail.product?.category.name}
+              </div>
+              <div className="product_name">{detail.product?.name}</div>
+              <p className="product_text">{detail.product?.description}</p>
+              <h4 className="product_price">Contest price: {detail.price}</h4>
               <div className="action">
                 <button
                   className="add-to-cart btn btn-primary"
@@ -59,7 +99,7 @@ const Contest = () => {
                           />
                           <label
                             className="form-check-label"
-                            for="flexCheckDefault"
+                            htmlFor="flexCheckDefault"
                           >
                             Quis labore eu tempor est. Id in sint id deserunt
                             cupidatat irure occaecat. Amet ex dolore Lorem culpa
@@ -74,6 +114,7 @@ const Contest = () => {
                           type="button"
                           className="btn btn-secondary"
                           data-bs-dismiss="modal"
+                          ref={closeButton}
                         >
                           Close
                         </button>
@@ -81,6 +122,7 @@ const Contest = () => {
                         <button
                           type="button"
                           className="btn btn-primary"
+                          onClick={handleJoinContest}
                         >
                           Join
                         </button>
@@ -96,7 +138,8 @@ const Contest = () => {
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </Fragment>
   );
 };
 

@@ -4,16 +4,20 @@ import About from "./pages/About/About";
 import Login from "./pages/Authentication/Login/Login";
 import Register from "./pages/Authentication/Register/Register";
 import Contact from "./pages/Contact/Contact";
-// import Contests from "./pages/Contests/Contests";
 import Home from "./pages/Home/Home";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Contest from "./pages/Contests/Contest";
 
 const App = () => {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/contests" element={<Home />} />
+        <Route path="/contest/:id" element={<Contest />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />

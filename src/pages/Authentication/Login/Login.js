@@ -4,6 +4,7 @@ import Footer from "../../../components/Footer/Footer";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import HttpPostRequest from "../../../http/HttpPostRequest";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,10 +21,10 @@ const Login = () => {
       const loginResponse = await HttpPostRequest("/user/login", data);
       localStorage.setItem("AUTH_TOKEN", loginResponse.token);
       localStorage.setItem("AUTH_EMAIL", loginResponse.email);
-
+      toast.success("Welcome back to KingWing");
       navigate("/home");
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
 
@@ -92,7 +93,7 @@ const Login = () => {
                   type="password"
                   name="password"
                   autoComplete="off"
-                  id="current-password"
+                  id="defaultFormRegisterPasswordEx"
                   className="form-control"
                   placeholder="Enter password"
                 />

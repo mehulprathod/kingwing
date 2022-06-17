@@ -1,6 +1,7 @@
 import React from "react";
 import Countdown from "react-countdown";
 import { Link } from "react-router-dom";
+import "./Contests.css";
 
 const Contests = (props) => {
   const contest = props.contest;

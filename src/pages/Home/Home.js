@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Contests from "../Contests/Contests";
 import HttpPostRequest from "../../http/HttpPostRequest";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [contestData, setContestData] = useState([]);
@@ -12,7 +13,7 @@ const Home = () => {
       const contests = await HttpPostRequest("/contest/gets");
       setContestData(contests);
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
 
