@@ -1,13 +1,15 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [email, setEmail] = useState(localStorage.getItem("AUTH_EMAIL"));
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("AUTH_EMAIL");
     localStorage.removeItem("AUTH_TOKEN");
     setEmail("");
+    navigate("/home");
   };
 
   return (
@@ -35,7 +37,7 @@ const Header = () => {
                 <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
               </div>
               <div className="top_bar_content ml-auto">
-                <div className="top_bar_menu">
+                {/* <div className="top_bar_menu">
                   <ul className="standard_dropdown top_bar_dropdown">
                     <li>
                       <a href=" ">
@@ -72,7 +74,7 @@ const Header = () => {
                       </ul>
                     </li>
                   </ul>
-                </div>
+                </div> */}
                 <div className="top_bar_user">
                   {(!email || email === "") && (
                     <Fragment>
@@ -143,37 +145,6 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
-              <div className="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-                <div className="wishlist d-flex flex-row align-items-center justify-content-end">
-                  <div className="wishlist_icon">
-                    <img src={require("../../images/heart.png")} alt="" />
-                  </div>
-                  <div className="wishlist_content">
-                    <div className="wishlist_text">
-                      <a href=" ">Wishlist</a>
-                    </div>
-                    <div className="wishlist_count">115</div>
-                  </div>
-                </div>
-                <div className="cart">
-                  <div className="cart_container d-flex flex-row align-items-center justify-content-end">
-                    <div className="cart_icon">
-                      <img src={require("../../images/cart.png")} alt="" />
-                      <div className="cart_count">
-                        <span>10</span>
-                      </div>
-                    </div>
-                    <div className="cart_content">
-                      <div className="cart_text">
-                        <a href=" ">Cart</a>
-                      </div>
-                      <div className="cart_price">$85</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -215,9 +186,6 @@ const Header = () => {
                       <Link to={"/home"}>Home</Link>
                     </li>
                     <li>
-                      <Link to={"/contests"}>Contests</Link>
-                    </li>
-                    <li>
                       <Link to={"/about"}>About</Link>
                     </li>
                     <li>
@@ -225,13 +193,27 @@ const Header = () => {
                     </li>
                     {email && email !== "" && (
                       <li>
-                        <Link to={"/about"}>{email}</Link>
-                        <ul className="cat_menu">
+                        <Link to={" "}>{email}</Link>
+                        <ul className="cat_menu" style={{ paddingLeft: "0" }}>
                           <li>
-                            <Link to={"/about"}>Wallet</Link>
+                            <Link to={" "}>Profile</Link>
+                            <ul
+                              className="cat_menu"
+                              style={{ paddingLeft: "0" }}
+                            >
+                              <li>
+                                <Link to={"/edit-profile"}>Edit Profile</Link>
+                              </li>
+                              <li>
+                                <Link to={"/view-profile"}>View Profile</Link>
+                              </li>
+                            </ul>
                           </li>
                           <li>
-                            <Link to={"/about"}>Your Contests</Link>
+                            <Link to={"/wallet"}>Wallet</Link>
+                          </li>
+                          <li>
+                            <Link to={"/my-contest"}>My Contests</Link>
                           </li>
                           <li>
                             <Link to={"/about"}>Settings</Link>

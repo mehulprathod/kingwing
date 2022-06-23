@@ -2,24 +2,24 @@ import React, { Fragment, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Contests from "../Contests/Contests";
-import HttpPostRequest from "../../http/HttpPostRequest";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { loadContests } from "../../store/contests/contests.action";
 
 const Home = () => {
-  const [contestData, setContestData] = useState([]);
-
-  const loadContests = async () => {
-    try {
-      const contests = await HttpPostRequest("/contest/gets");
-      setContestData(contests);
-    } catch (error) {
-      toast.error(error);
-    }
-  };
+  const dispatch = useDispatch();
+  const _contests = useSelector(
+    (state) => state.contestsReducer.contests
+  );
+  const [contestData, setContestData] = useState(_contests);
 
   useEffect(() => {
-    loadContests();
+    dispatch(loadContests());
   }, []);
+
+  useEffect(() => {
+    setContestData(_contests);
+  }, [_contests]);
 
   return (
     <Fragment>

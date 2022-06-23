@@ -3,11 +3,13 @@ import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import HttpPostRequest from "../../../http/HttpPostRequest";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { doLogin } from "../../../store/users/users.action";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     var formData = new FormData(event.target);
@@ -17,15 +19,25 @@ const Login = () => {
     formData.forEach(function (value, key) {
       data[key] = value;
     });
-    try {
-      const loginResponse = await HttpPostRequest("/user/login", data);
-      localStorage.setItem("AUTH_TOKEN", loginResponse.token);
-      localStorage.setItem("AUTH_EMAIL", loginResponse.email);
-      toast.success("Welcome back to KingWing");
-      navigate("/home");
-    } catch (error) {
-      toast.error(error);
-    }
+
+    dispatch(doLogin(data))
+      .then(() => {
+        toast.success("Welcome back to KingWing");
+        navigate("/home");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+
+    // try {
+    //   const loginResponse = await HttpPostRequest("/user/login", data);
+    //   localStorage.setItem("AUTH_TOKEN", loginResponse.token);
+    //   localStorage.setItem("AUTH_EMAIL", loginResponse.email);
+    //   toast.success("Welcome back to KingWing");
+    //   navigate("/home");
+    // } catch (error) {
+    //   toast.error(error);
+    // }
   };
 
   return (
@@ -114,9 +126,9 @@ const Login = () => {
                       Remember me
                     </label>
                   </div>
-                  <a href=" " className="text-body">
+                  <Link to={"/forgot-password"} className="text-body">
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
                 <div className="text-center text-lg-start mt-4 pt-2">
                   <button className="btn btn-primary py-2 px-4" type="submit">

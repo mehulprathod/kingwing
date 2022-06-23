@@ -1,3 +1,4 @@
+// import moment from "moment";
 import React from "react";
 import Countdown from "react-countdown";
 import { Link } from "react-router-dom";
@@ -6,7 +7,12 @@ import "./Contests.css";
 const Contests = (props) => {
   const contest = props.contest;
 
+  // console.log('moment(contest.closeDate).format("X") ',moment.utc(contest.closeDate).local().format('LLL') )
+
   const renderer = ({ hours, minutes, seconds, completed }) => {
+
+    // console.log( hours, minutes, seconds, completed);
+
     if (completed) {
       // Render a completed state
       return <div>Processing... </div>;
@@ -117,7 +123,8 @@ const Contests = (props) => {
                       </div>
                       <div className="deals_timer_content ml-auto">
                         <Countdown
-                          date={Date.now() + 500000000}
+                          date={Date.now() + 5000000}
+                          // { moment.utc(contest.closeDate).local() }
                           renderer={renderer}
                         />
                       </div>

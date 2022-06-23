@@ -1,0 +1,52 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.edit-container {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit-card {
+  width: 400px;
+  height: 470px;
+  background-color: #fff;
+  /* border: 1px solid rgb(176, 170, 170); */
+  border-radius: 5px;
+  overflow: hidden;
+}
+.edit-card .edit-info {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e1dede;
+  background-color: #e5e5e5;
+}
+.edit-card .edit-info button {
+  height: 30px;
+  width: 80px;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  background-color: #0e8ce4;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.edit-card .edit-forms {
+  padding: 20px 15px 0 15px;
+}
+.edit-card .edit-inputs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.edit-card .edit-inputs span {
+  font-size: 12px;
+}
+.edit-card .edit-inputs input {
+  height: 40px;
+  font-size: 17px;
+  box-shadow: none;
+  outline: none;
+}
