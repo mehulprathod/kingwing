@@ -2,37 +2,69 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.winner_card {
+  position: absolute;
+  background-color: #0e8ce4ba;
+  text-align: center;
+  z-index: 1111;
+  height: 100%;
+  width: 97%;
+  border-radius: 5px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.winner-card {
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+  height: 300px;
+  box-shadow: 1px 7px 20px 2px #0000005e;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.winner-card-image {
+  height: 130px !important;
+  width: 130px !important;
+  border-radius: 100px;
+  position: relative;
+  top: 75px;
+  z-index: 1;
+  border: 4px solid #0e8ce4ba;
 }
 
-.App-link {
-  color: #61dafb;
+.winner-card-info {
+  margin-top: 60px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-primary {
+  background-color: #0e8ce4;
+  border-color: #0e8ce4;
+}
+
+.nav-pills .nav-link {
+  border-radius: 0;
+  color: #0e8ce4;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #0e8ce4;
+}
+
+.nav button {
+  height: 50px;
+}
+
+#v-pills-tab {
+  padding-right: 0;
+}
+
+.wishlist_text a {
+  font-size: 16px !important;
+}
+
+.wishlist_content {
+  margin-top: 4px !important;
 }

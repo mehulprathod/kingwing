@@ -1,27 +1,41 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import HttpPostRequest from "../../http/HttpPostRequest";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { loadTransactionsDetail } from "../../../store/transactions/transactions.action";
 
 const Transactions = (props) => {
+  const dispatch = useDispatch();
+  const _transactions = useSelector(
+    (state) => state.transactionsReducer.transactionsDetail
+  );
   const [transactionData, setTransactionData] = useState([]);
 
-  const loadTransactions = async () => {
-    try {
-      const data = {};
-      const transactionResponse = await HttpPostRequest(
-        "/transaction/gets",
-        data
-      );
-      setTransactionData(transactionResponse);
-    } catch (error) {
-      toast.error(error);
-    }
-  };
+  // const loadTransactions = async () => {
+  //   try {
+  //     const data = {};
+  //     dispatch(loadTransactionsDetail(data));
+  //   } catch (error) {
+  //     toast.error(error);
+  //   }
+  // };
 
   useEffect(() => {
+    const loadTransactions = async () => {
+      try {
+        const data = {};
+        dispatch(loadTransactionsDetail(data));
+      } catch (error) {
+        toast.error(error);
+      }
+    };
+
     loadTransactions();
-  }, [props.newItem]);
+  }, []);
+
+  useEffect(() => {
+    setTransactionData(_transactions);
+  }, [_transactions]);
 
   return (
     <div className="container" style={{ marginBottom: "12px" }}>

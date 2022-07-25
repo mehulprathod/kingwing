@@ -3,27 +3,44 @@ import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
-import HttpPostRequest from "../../../http/HttpPostRequest";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { doRegister } from "../../../store/users/users.action";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     var formData = new FormData(event.target);
     event.preventDefault();
 
+    const password = event.target["password"].value;
+    const confirm_password = event.target["confirm_password"].value;
+
+    if (password === "") {
+      toast.error("Please enter Password !");
+      return false;
+    } else if (confirm_password === "") {
+      toast.error("Please enter Confirm Password !");
+      return false;
+    } else if (password !== confirm_password) {
+      toast.error("Password and Confirm Password does not Match !");
+      return false;
+    }
+
     var data = {};
     formData.forEach(function (value, key) {
       data[key] = value;
     });
-    try {
-      await HttpPostRequest("/users/create", data);
-      toast.success("Welcome to KingWing");
-      navigate("/login");
-    } catch (error) {
-      toast.error(error);
-    }
+    dispatch(doRegister(data))
+      .then(() => {
+        toast.success("Welcome to KingWing");
+        navigate("/login");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
@@ -105,6 +122,7 @@ const Register = () => {
                 </label>
                 <input
                   type="password"
+                  name="confirm_password"
                   autoComplete="off"
                   id="defaultFormRegisterConfirmEx"
                   className="form-control"

@@ -5364,11 +5364,12 @@ a.waves-light {
   font-size: 10em !important;
 }
 .btn-primary {
-  background-color: #4285f4 !important;
+  background-color: #0e8ce4 !important;
   color: #fff;
 }
 .btn-primary:hover {
-  background-color: #5a95f5;
+  background-color: #0000FF !important;
+  border-color: #0000FF !important;
   color: #fff;
 }
 .btn-primary.focus,

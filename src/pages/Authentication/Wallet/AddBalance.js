@@ -1,8 +1,14 @@
 import React, { Fragment, useRef } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import HttpPostRequest from "../../http/HttpPostRequest";
+import {
+  addBalance,
+  loadBalanceDetail,
+  loadTransactionsDetail,
+} from "../../../store/transactions/transactions.action";
 
-const AddBalance = (props) => {
+const AddBalance = () => {
+  const dispatch = useDispatch();
   const closeButton = useRef(null);
 
   const handleAddBalance = async (event) => {
@@ -14,15 +20,16 @@ const AddBalance = (props) => {
       data[key] = value;
     });
 
-    try {
-      await HttpPostRequest("/balance/add", data);
-      closeButton.current.click();
-      props.loadItem();
-      props.changeBalance();
-      toast.success("Success");
-    } catch (error) {
-      toast.error(error);
-    }
+    dispatch(addBalance(data))
+      .then(() => {
+        closeButton.current.click();
+        dispatch(loadBalanceDetail());
+        dispatch(loadTransactionsDetail());
+        toast.success("Success");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (

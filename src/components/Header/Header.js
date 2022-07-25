@@ -1,9 +1,19 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+// import { useSelector } from "react-redux";
 
 const Header = () => {
+  // const userData = useSelector((state) => state.usersReducer.loginUserProfile);
+
   const [email, setEmail] = useState(localStorage.getItem("AUTH_EMAIL"));
+  // console.log(userData);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // if (userData) {
+    // }
+    setEmail(email);
+  }, [email]);
 
   const handleLogout = () => {
     localStorage.removeItem("AUTH_EMAIL");
@@ -76,28 +86,39 @@ const Header = () => {
                   </ul>
                 </div> */}
                 <div className="top_bar_user">
-                  {(!email || email === "") && (
+                  <div className="user_icon">
+                    <img
+                      src={require("../../images/user.svg").default}
+                      alt=""
+                    />
+                  </div>
+                  {!email && (
                     <Fragment>
-                      <div className="user_icon">
-                        <img
-                          src={require("../../images/user.svg").default}
-                          alt=""
-                        />
-                      </div>
                       <div>
                         <Link to="/register">Register</Link>
                       </div>
+                      <div>
+                        <Link to="/login">Login</Link>
+                      </div>
                     </Fragment>
                   )}
-                  {(!email || email === "") && (
-                    <div>
-                      <Link to="/login">Login</Link>
-                    </div>
-                  )}
-                  {email && email !== "" && (
-                    <button className="btn btn-primary" onClick={handleLogout}>
-                      Logout
-                    </button>
+                  {email && (
+                    <Fragment>
+                      <div>
+                        <Link to={"/profile"}>{email}</Link>
+                      </div>
+                      <div>
+                        {email && email !== "" && (
+                          <Link to={"/login"} onClick={handleLogout}>
+                            Logout
+                            <i
+                              className="fa fa-sign-out"
+                              aria-hidden="true"
+                            ></i>
+                          </Link>
+                        )}
+                      </div>
+                    </Fragment>
                   )}
                 </div>
               </div>
@@ -145,6 +166,41 @@ const Header = () => {
                 </div>
               </div>
             </div>
+            {email && email !== "" && (
+              <div className="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                <div className="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+                  <div className="wishlist d-flex flex-row align-items-center justify-content-end">
+                    <div className="wishlist_icon">
+                      <img
+                        src={require("../../images/wallet.png")}
+                        style={{ height: "40px", width: "40px" }}
+                        alt=""
+                      />
+                    </div>
+                    <div className="wishlist_content">
+                      <div className="wishlist_text">
+                        <Link to="/wallet">Wallet</Link>
+                      </div>
+                      <div className="wishlist_count"></div>
+                    </div>
+                  </div>
+                  <div className="wishlist d-flex flex-row align-items-center justify-content-end">
+                    <div className="wishlist_icon">
+                      <img
+                        src={require("../../images/new-contest.png")}
+                        style={{ height: "40px", width: "40px" }}
+                        alt=""
+                      />
+                    </div>
+                    <div className="wishlist_content">
+                      <div className="wishlist_text">
+                        <Link to="/my-contest">Your Contest</Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -169,15 +225,6 @@ const Header = () => {
                     <li>
                       <a href=" ">Big Bumper Contest</a>
                     </li>
-                    <li>
-                      <a href=" ">Laptops &amp; Computers </a>
-                    </li>
-                    <li>
-                      <a href=" ">Cameras &amp; TV</a>
-                    </li>
-                    <li>
-                      <a href=" ">Smartphones &amp; Tablets</a>
-                    </li>
                   </ul>
                 </div>
                 <div className="main_nav_menu ml-auto">
@@ -191,36 +238,6 @@ const Header = () => {
                     <li>
                       <Link to={"/contact"}>Contact</Link>
                     </li>
-                    {email && email !== "" && (
-                      <li>
-                        <Link to={" "}>{email}</Link>
-                        <ul className="cat_menu" style={{ paddingLeft: "0" }}>
-                          <li>
-                            <Link to={" "}>Profile</Link>
-                            <ul
-                              className="cat_menu"
-                              style={{ paddingLeft: "0" }}
-                            >
-                              <li>
-                                <Link to={"/edit-profile"}>Edit Profile</Link>
-                              </li>
-                              <li>
-                                <Link to={"/view-profile"}>View Profile</Link>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <Link to={"/wallet"}>Wallet</Link>
-                          </li>
-                          <li>
-                            <Link to={"/my-contest"}>My Contests</Link>
-                          </li>
-                          <li>
-                            <Link to={"/about"}>Settings</Link>
-                          </li>
-                        </ul>
-                      </li>
-                    )}
                   </ul>
                 </div>
                 <div className="menu_trigger_container ml-auto">

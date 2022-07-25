@@ -15,3 +15,62 @@ export const doLogin = (data) => {
     }
   };
 };
+
+export const doRegister = (data) => {
+  return async (dispatch) => {
+    try {
+      const registerResponse = await HttpPostRequest("/users/create", data);
+      dispatch({
+        type: "SET_REGISTER_USER_DATA",
+        value: registerResponse,
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+};
+
+export const updateUser = (data) => {
+  return async (dispatch) => {
+    try {
+      const updateResponse = await HttpPostRequest("/user/update", data);
+      dispatch({
+        type: "UPDATE_USER_DATA",
+        value: updateResponse,
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+};
+
+export const loadUser = (data) => {
+  return async (dispatch) => {
+    try {
+      const profileResponse = await HttpPostRequest("/user/profile", data);
+      dispatch({
+        type: "SET_USER_DATA",
+        value: profileResponse,
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+};
+
+export const changePass = (data) => {
+  return async (dispatch) => {
+    try {
+      const changePassResponse = await HttpPostRequest(
+        "/password/change",
+        data
+      );
+      dispatch({
+        type: "CHANGE_PASSWORD",
+        value: changePassResponse,
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+};

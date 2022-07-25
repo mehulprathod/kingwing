@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Contests from "../Contests/Contests";
+import Contests from "../../components/Contests/ContestsCard";
 // import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { loadContests } from "../../store/contests/contests.action";
@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(loadContests());
-  }, []);
+  });
 
   useEffect(() => {
     setContestData(_contests);
