@@ -34,7 +34,7 @@ const UserContestCard = () => {
     };
 
     loadContests();
-  }, []);
+  });
 
   useEffect(() => {
     setContestDetail(_userContest);

@@ -40,7 +40,7 @@ const EditProfile = () => {
 
   useEffect(() => {
     loadProfile();
-  }, []);
+  });
 
   useEffect(() => {
     setProfile(_userProfile);

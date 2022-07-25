@@ -31,7 +31,7 @@ const Transactions = (props) => {
     };
 
     loadTransactions();
-  }, []);
+  });
 
   useEffect(() => {
     setTransactionData(_transactions);

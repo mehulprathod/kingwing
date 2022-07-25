@@ -34,7 +34,7 @@ const Wallet = () => {
     };
 
     loadBalance();
-  }, []);
+  });
 
   useEffect(() => {
     setBalanceData(_balanceDetail);
